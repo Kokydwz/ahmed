@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الكورس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --accent:#0ea5e9;--accent-d:#0284c7;--accent-l:#e0f2fe;
+  --bg:#f8fafc;--bg2:#fff;--bg3:#f1f5f9;
+  --border:#e2e8f0;--border2:#cbd5e1;
+  --text:#0f172a;--muted:#64748b;--muted2:#94a3b8;
+  --sh:0 1px 3px rgba(0,0,0,.07);--sh-md:0 4px 16px rgba(0,0,0,.08);--sh-lg:0 10px 40px rgba(0,0,0,.1);
+  --r:14px;--r-sm:8px;--cc:#0ea5e9;
+}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:var(--text);direction:rtl}
+a{color:inherit;text-decoration:none}
+img{display:block}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+
+/* NAV */
+header{background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:var(--sh)}
+.nav-inner{max-width:1160px;margin:0 auto;padding:0 20px;height:62px;display:flex;align-items:center;gap:14px}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo-icon{width:36px;height:36px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.95rem}
+.nav-logo-name{font-size:.95rem;font-weight:700}
+.nav-links{display:flex;gap:2px;margin-right:auto}
+.nav-links a{padding:7px 13px;border-radius:var(--r-sm);font-size:.85rem;font-weight:500;color:var(--muted);transition:all .2s;display:flex;align-items:center;gap:6px}
+.nav-links a:hover{background:var(--bg3);color:var(--text)}
+.nav-tog{display:none;background:none;border:none;font-size:1.1rem;color:var(--text);cursor:pointer;padding:6px;margin-right:auto}
+.mob-nav{display:none;background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px;flex-direction:column;gap:3px}
+.mob-nav.open{display:flex}
+.mob-nav a{padding:10px 12px;border-radius:var(--r-sm);font-size:.88rem;color:var(--text);display:flex;align-items:center;gap:8px}
+.mob-nav a:hover{background:var(--bg3)}
+
+/* BREADCRUMB */
+.bc-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 20px}
+.bc-in{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:.8rem}
+.bc-a{color:var(--muted);transition:color .2s}
+.bc-a:hover{color:var(--accent)}
+.bc-cur{color:var(--text);font-weight:600}
+.bc-sep{color:var(--muted2);font-size:.7rem}
+
+/* COURSE HERO */
+.chero{background:linear-gradient(135deg,var(--accent-l) 0%,#f0fdf4 100%);padding:32px 20px;border-bottom:1px solid var(--border)}
+.chero-in{max-width:1160px;margin:0 auto;display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.chero-ico{width:60px;height:60px;border-radius:14px;background:var(--cc);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,.14)}
+.chero-lv{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.8);border:1px solid var(--border);border-radius:50px;padding:2px 11px;font-size:.68rem;font-weight:700;color:var(--cc);margin-bottom:6px;text-transform:uppercase}
+.chero-title{font-size:clamp(1.2rem,2.5vw,1.75rem);font-weight:700;margin-bottom:3px}
+.chero-sub{font-size:.83rem;color:var(--muted);margin-bottom:12px}
+.chero-stats{display:flex;gap:16px;flex-wrap:wrap}
+.cs{display:flex;align-items:center;gap:4px;font-size:.78rem;color:var(--muted)}
+.cs i{color:var(--cc)}
+
+/* LAYOUT */
+.layout{max-width:1160px;margin:0 auto;padding:24px 20px;display:grid;grid-template-columns:1fr 330px;gap:22px;align-items:start}
+
+/* CHAPTERS */
+.ch-block{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:10px;transition:border-color .2s}
+.ch-block.open{border-color:var(--cc)}
+.ch-head{display:flex;align-items:center;gap:11px;padding:14px 16px;cursor:pointer;user-select:none;transition:background .15s}
+.ch-head:hover{background:var(--bg3)}
+.ch-num{width:32px;height:32px;border-radius:8px;background:var(--accent-l);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:var(--cc);flex-shrink:0;border:1px solid rgba(14,165,233,.18)}
+.ch-inf{flex:1}
+.ch-ttl{font-size:.9rem;font-weight:700;margin-bottom:2px}
+.ch-meta{font-size:.7rem;color:var(--muted)}
+.ch-caret{color:var(--muted2);font-size:.72rem;transition:transform .22s;flex-shrink:0}
+.ch-block.open .ch-caret{transform:rotate(90deg)}
+.ch-body{display:none}
+.ch-body.open{display:block}
+
+.lec-item{display:flex;align-items:flex-start;gap:11px;padding:11px 16px 11px 26px;border-top:1px solid var(--border);cursor:pointer;transition:background .15s;position:relative}
+.lec-item::before{content:'';position:absolute;right:16px;top:0;bottom:0;width:1px;background:var(--border)}
+.lec-item::after{content:'';position:absolute;right:12px;top:50%;transform:translateY(-50%);width:7px;height:7px;border-radius:50%;background:var(--border2)}
+.lec-item:hover{background:var(--accent-l)}
+.lec-item:hover::after,.lec-item.playing::after{background:var(--cc)}
+.lec-item.playing{background:var(--accent-l)}
+.lec-thumb{width:76px;height:50px;border-radius:6px;object-fit:cover;flex-shrink:0;border:1px solid var(--border)}
+.lec-thumb-ph{width:76px;height:50px;border-radius:6px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted2);flex-shrink:0;font-size:.8rem}
+.lec-inf{flex:1;min-width:0}
+.lec-title{font-size:.8rem;font-weight:600;line-height:1.4;margin-bottom:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lec-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.lec-dur{display:flex;align-items:center;gap:3px;font-size:.68rem;color:var(--muted);background:var(--bg3);padding:2px 7px;border-radius:50px}
+.lec-views{font-size:.68rem;color:var(--muted)}
+
+/* PLAYER */
+.player-wrap{position:sticky;top:76px}
+.player-card{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-md)}
+.player-vid{aspect-ratio:16/9;background:#0f172a;position:relative}
+.player-vid iframe{width:100%;height:100%;border:none;display:block}
+.player-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:9px;color:#475569}
+.player-ph i{font-size:2rem;opacity:.4}
+.player-ph p{font-size:.8rem;opacity:.5}
+.player-info{padding:14px 16px}
+.player-title{font-size:.9rem;font-weight:700;line-height:1.4;margin-bottom:7px}
+.player-desc{font-size:.78rem;color:var(--muted);line-height:1.8;white-space:pre-line;max-height:110px;overflow-y:auto}
+.player-stats{display:flex;gap:12px;margin-top:11px;padding-top:11px;border-top:1px solid var(--border);flex-wrap:wrap}
+.pstat{display:flex;align-items:center;gap:4px;font-size:.72rem;color:var(--muted)}
+.pstat i{color:var(--cc)}
+.no-sel{text-align:center;padding:24px 16px;background:var(--bg3)}
+.no-sel i{font-size:1.8rem;color:var(--muted2);display:block;margin-bottom:8px}
+.no-sel p{font-size:.8rem;color:var(--muted)}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  .layout{grid-template-columns:1fr}
+  .player-wrap{position:static;order:-1}
+  .nav-links{display:none}
+  .nav-tog{display:block}
+}
+@media(max-width:560px){
+  .layout{padding:14px}
+  .lec-thumb,.lec-thumb-ph{width:62px;height:42px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-icon"><i class="fas fa-flask"></i></div>
+      <div class="nav-logo-name" id="nav-pname">…</div>
+    </div>
+    <button class="nav-tog" onclick="document.getElementById('mob').classList.toggle('open')"><i class="fas fa-bars"></i></button>
+    <nav class="nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+      <a href="index.html#courses"><i class="fas fa-play-circle"></i> الكورسات</a>
+      <a href="index.html#channels"><i class="fas fa-satellite-dish"></i> القنوات</a>
+    </nav>
+  </div>
+  <nav class="mob-nav" id="mob">
+    <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+    <a href="index.html#courses"><i class="fas fa-play-circle"></i> الكورسات</a>
+    <a href="index.html#channels"><i class="fas fa-satellite-dish"></i> القنوات</a>
+  </nav>
+</header>
+
+<div class="bc-bar">
+  <div class="bc-in">
+    <a href="index.html" class="bc-a"><i class="fas fa-home"></i> الرئيسية</a>
+    <span class="bc-sep"><i class="fas fa-chevron-left"></i></span>
+    <a href="index.html#courses" class="bc-a">الكورسات</a>
+    <span class="bc-sep"><i class="fas fa-chevron-left"></i></span>
+    <span class="bc-cur" id="bc-course">…</span>
+  </div>
+</div>
+
+<div class="chero" id="chero">
+  <div class="chero-in">
+    <div class="chero-ico" id="hero-ico"><i class="fas fa-flask"></i></div>
+    <div>
+      <div class="chero-lv" id="hero-lv"><i class="fas fa-layer-group"></i> …</div>
+      <h1 class="chero-title" id="hero-title">جاري التحميل…</h1>
+      <p class="chero-sub" id="hero-sub"></p>
+      <div class="chero-stats" id="hero-stats"></div>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <div id="chapters-wrap">
+    <div style="text-align:center;padding:44px;color:var(--muted)"><i class="fas fa-spinner fa-spin" style="font-size:1.4rem"></i></div>
+  </div>
+  <div class="player-wrap">
+    <div class="player-card">
+      <div class="player-vid" id="player-vid">
+        <div class="player-ph"><i class="fas fa-play-circle"></i><p>اختر محاضرة للمشاهدة</p></div>
+      </div>
+      <div class="player-info" id="player-info">
+        <div class="no-sel"><i class="fas fa-hand-pointer"></i><p>اضغط على محاضرة من القائمة</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const P=new URLSearchParams(location.search),cid=P.get('id');
+let cfg,course,allCh=[];
+
+function ytId(url){if(!url)return null;const m=url.match(/(?:v=|youtu\.be\/)([^&\s?#]+)/);return m?m[1]:null;}
+function fmtN(n){if(!n)return'0';if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1e3)return(n/1e3).toFixed(1)+'K';return''+n;}
+function fmtD(iso){if(!iso)return'';try{return new Date(iso).toLocaleDateString('ar-IQ',{year:'numeric',month:'long',day:'numeric'});}catch{return iso.split('T')[0];}}
+
+async function init(){
+  try{
+    cfg=await fetch('config.json?_='+Date.now()).then(r=>r.json());
+  }catch{location.href='index.html';return;}
+
+  const acc=cfg.accent_color||'#0ea5e9';
+  document.documentElement.style.setProperty('--accent',acc);
+  document.getElementById('nav-pname').textContent=cfg.platform_name;
+  document.title=cfg.platform_name;
+
+  if(!cid){location.href='index.html';return;}
+  course=cfg.courses?.find(c=>c.id===cid);
+  if(!course){location.href='index.html';return;}
+
+  const cc=course.color||acc;
+  document.documentElement.style.setProperty('--cc',cc);
+  document.documentElement.style.setProperty('--accent-l',hexToLight(cc));
+  document.getElementById('bc-course').textContent=course.title;
+  document.getElementById('hero-ico').innerHTML=`<i class="fas ${course.icon||'fa-flask'}"></i>`;
+  document.getElementById('hero-ico').style.background=cc;
+  document.getElementById('hero-lv').innerHTML=`<i class="fas fa-layer-group"></i> ${course.level||''}`;
+  document.getElementById('hero-title').textContent=course.title;
+  document.getElementById('hero-sub').textContent=course.description||'';
+  document.title=course.title+' | '+cfg.platform_name;
+
+  await loadChapters();
+}
+
+async function loadChapters(){
+  const dir=course.chapters_dir;
+  let files=[];
+
+  // Try PHP listing first
+  try{
+    const r=await fetch(`list_chapters.php?dir=${encodeURIComponent(dir)}`);
+    if(r.ok) files=await r.json();
+  }catch{}
+
+  if(!files.length){
+    // Fallback: probe chapter1..chapter30
+    for(let i=1;i<=30;i++){
+      try{
+        const r=await fetch(`${dir}/chapter${i}.json`);
+        if(!r.ok) break;
+        const d=await r.json();
+        allCh.push(d);
+      }catch{break;}
+    }
+  } else {
+    for(const f of files){
+      try{
+        const r=await fetch(`${dir}/${f}`);
+        if(r.ok) allCh.push(await r.json());
+      }catch{}
+    }
+  }
+
+  allCh.sort((a,b)=>(a.chapter_number||99)-(b.chapter_number||99));
+
+  // Hero stats
+  const totalL=allCh.reduce((s,c)=>s+(c.lectures?.length||0),0);
+  const totalM=allCh.reduce((s,c)=>s+(c.lectures||[]).reduce((ss,l)=>ss+(l['Duration in minutes']||0),0),0);
+  const hrs=Math.floor(totalM/60);
+  document.getElementById('hero-stats').innerHTML=`
+    <div class="cs"><i class="fas fa-layer-group"></i> ${allCh.length} فصل</div>
+    <div class="cs"><i class="fas fa-play-circle"></i> ${totalL} محاضرة</div>
+    <div class="cs"><i class="fas fa-clock"></i> ${hrs}+ ساعة</div>`;
+
+  renderChapters();
+}
+
+function renderChapters(){
+  const wrap=document.getElementById('chapters-wrap');
+  if(!allCh.length){
+    wrap.innerHTML='<div style="text-align:center;padding:44px;color:var(--muted)"><i class="fas fa-folder-open" style="font-size:2rem;opacity:.3;display:block;margin-bottom:12px"></i>لا يوجد فصول بعد</div>';
+    return;
+  }
+  wrap.innerHTML=allCh.map((ch,idx)=>{
+    const lecs=ch.lectures||[];
+    const tm=lecs.reduce((s,l)=>s+(l['Duration in minutes']||0),0);
+    const h=Math.floor(tm/60),m=Math.round(tm%60);
+    const dur=h>0?`${h}س ${m}د`:`${m} دقيقة`;
+    return`<div class="ch-block" id="chb${idx}">
+      <div class="ch-head" onclick="toggleCh(${idx})">
+        <div class="ch-num">${ch.chapter_number||idx+1}</div>
+        <div class="ch-inf">
+          <div class="ch-ttl">${ch.chapter_title||'فصل '+(idx+1)}</div>
+          <div class="ch-meta"><i class="fas fa-video" style="margin-left:3px;opacity:.5"></i>${lecs.length} محاضرة &nbsp;·&nbsp; <i class="fas fa-clock" style="margin-left:3px;opacity:.5"></i>${dur}</div>
+        </div>
+        <i class="fas fa-chevron-left ch-caret"></i>
+      </div>
+      <div class="ch-body" id="chbody${idx}">
+        ${lecs.map((l,li)=>{
+          const thumb=l['Thumbnail url'];
+          return`<div class="lec-item" id="li${idx}_${li}" onclick="play(${idx},${li})">
+            ${thumb
+              ?`<img class="lec-thumb" src="${thumb}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'lec-thumb-ph\\'><i class=\\'fas fa-play\\'></i></div>'">`
+              :`<div class="lec-thumb-ph"><i class="fas fa-play"></i></div>`}
+            <div class="lec-inf">
+              <div class="lec-title">${l.Title||l.title||'محاضرة'}</div>
+              <div class="lec-meta">
+                <span class="lec-dur"><i class="fas fa-clock"></i> ${l['Duration in timestamp']||'--'}</span>
+                ${l.Views?`<span class="lec-views"><i class="fas fa-eye"></i> ${fmtN(l.Views)}</span>`:''}
+              </div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  }).join('');
+
+  // Open first chapter automatically
+  toggleCh(0);
+}
+
+function toggleCh(idx){
+  document.getElementById('chb'+idx)?.classList.toggle('open');
+  document.getElementById('chbody'+idx)?.classList.toggle('open');
+}
+
+function play(ci,li){
+  const lec=allCh[ci]?.lectures?.[li];
+  if(!lec)return;
+  document.querySelectorAll('.lec-item').forEach(e=>e.classList.remove('playing'));
+  document.getElementById(`li${ci}_${li}`)?.classList.add('playing');
+
+  const vid=ytId(lec['Video url']);
+  document.getElementById('player-vid').innerHTML=vid
+    ?`<iframe src="https://www.youtube.com/embed/${vid}?autoplay=1&rel=0" allowfullscreen allow="autoplay"></iframe>`
+    :`<div class="player-ph"><i class="fas fa-link"></i><p>الرابط غير متاح</p></div>`;
+
+  document.getElementById('player-info').innerHTML=`
+    <div class="player-title">${lec.Title||lec.title||'محاضرة'}</div>
+    <div class="player-desc">${(lec.Description||lec.description||'').trim()}</div>
+    <div class="player-stats">
+      <div class="pstat"><i class="fas fa-clock"></i> ${lec['Duration in timestamp']||'--'}</div>
+      ${lec.Views?`<div class="pstat"><i class="fas fa-eye"></i> ${fmtN(lec.Views)}</div>`:''}
+      ${lec.Likes?`<div class="pstat"><i class="fas fa-thumbs-up"></i> ${fmtN(lec.Likes)}</div>`:''}
+      ${lec['Uploaded Time']?`<div class="pstat"><i class="fas fa-calendar"></i> ${fmtD(lec['Uploaded Time'])}</div>`:''}
+    </div>`;
+
+  if(window.innerWidth<860) document.querySelector('.player-wrap').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function hexToLight(c){try{let r=parseInt(c.slice(1,3),16),g=parseInt(c.slice(3,5),16),b=parseInt(c.slice(5,7),16);r=Math.round(r*.12+238);g=Math.round(g*.12+238);b=Math.round(b*.12+248);return`#${r.toString(16).padStart(2,'0')}${g.toString(16).padStart(2,'0')}${b.toString(16).padStart(2,'0')}`;}catch{return'#e0f2fe';}}
+
+init();
+</script>
+</body>
+</html>

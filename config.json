@@ -1,0 +1,27 @@
+{
+  "platform_name": "منصة النداوي للكيمياء",
+  "platform_tagline": "تعلّم الكيمياء بأسلوب مختلف",
+  "teacher_name": "أ. أحمد النداوي",
+  "teacher_title": "أستاذ الكيمياء المتخصص",
+  "teacher_bio": "خريج علوم كيمياء جامعه بغداد كلية ابن الهيثم",
+  "teacher_image": "img.jpg",
+  "accent_color": "#0ea5e9",
+  "social": {
+    "youtube": "https://youtube.com/channel/UCJ9NZksRi2lD9Q3f-PDfBEQ",
+    "telegram": "https://t.me/x_chemistry_x",
+    "facebook": "",
+    "whatsapp": "https://wa.me/9647723575429"
+  },
+  "courses": [
+    {
+      "id": "chem6-en",
+      "title": "كيمياء السادس العلمي",
+      "subtitle": "المنهج الإنكليزي",
+      "icon": "fa-flask",
+      "color": "#0ea5e9",
+      "description": "المنهج الكامل لمادة الكيمياء للصف السادس العلمي وفق المنهج الإنكليزي",
+      "level": "السادس العلمي",
+      "chapters_dir": "chapters/chem6-en"
+    }
+  ]
+}
